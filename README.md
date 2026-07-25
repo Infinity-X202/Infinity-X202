@@ -1,8 +1,3 @@
-<!--
-  Infinity X Developer — GitHub Profile README
-  Account: Infinity-X202
--->
-
 <h1 align="center">Infinity X Developer</h1>
 
 <p align="center">
