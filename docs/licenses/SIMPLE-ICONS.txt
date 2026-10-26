@@ -1,0 +1,9 @@
+Simple Icons
+https://github.com/simple-icons/simple-icons
+
+The icon paths embedded in assets/stack.svg and assets/connect.svg are taken from Simple Icons and recolored for this profile.
+
+Simple Icons artwork is released under Creative Commons Zero v1.0 Universal (CC0 1.0).
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Brand names and logo shapes remain the trademarks of their respective owners. They are used here only to identify a technology.

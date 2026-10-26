@@ -1,135 +1,77 @@
-<h1 align="center">Infinity X Developer</h1>
+# Infinity X
 
-<p align="center">
-  <strong>Adil Fayyaz</strong><br>
-  Web Developer · AI-Assisted Builder · Cybersecurity Researcher
-</p>
+![Infinity X Hero](./assets/hero.svg?v=1)
 
-<p align="center">
-  Building modern digital products at the intersection of AI-assisted development, web applications, and cybersecurity research.
-</p>
+I am Adil Fayyaz, working in public as **Infinity X**. I build software and study cybersecurity, artificial intelligence, digital forensics, and threat intelligence. Those are areas of focus, not job titles or certifications.
 
-<p align="center">
-  <a href="https://github.com/Infinity-X202">GitHub</a>
-  ·
-  <a href="https://infinityx-2024.vercel.app">InfinityX Site</a>
-  ·
-  <em>[LinkedIn — add your URL]</em>
-  ·
-  <em>[Email — provide to publish]</em>
-</p>
+GitHub: [github.com/Infinity-X202](https://github.com/Infinity-X202)
 
----
+## About me
 
-## About
+![About Infinity X](./assets/about-life.svg?v=1)
 
-I am a developer focused on building practical digital products and security-oriented tooling under the **Infinity X Developer** brand.
+I care about careful software, defensive security, and understanding how incidents are investigated. The panels above are interests. They are not a claim of professional experience, clearance, or client work.
 
-Currently focused on:
+Current focus:
 
-- Modern web applications and product-style UI
-- AI-assisted development workflows and small AI backends
-- Cybersecurity research and authorized network/security labs
+- Security research and ethical hacking, studied as defense
+- Secure software development
+- AI and automation
+- Digital investigation and threat analysis
 
-Building and experimenting with:
+## Technology
 
-- Front-end and full-stack prototypes
-- Python security utilities for learning and lab environments
-- Automation and developer tooling
+![Technology Stack](./assets/stack.svg?v=1)
 
-Researching:
+The icons name tools that show up in public repositories, or systems I use. An icon is a label, not a certification.
 
-- Home/LAN security auditing concepts
-- Responsible testing practices in authorized environments
-- How AI can support secure development and analysis workflows
+| Group | Tools |
+| --- | --- |
+| Programming | Python, JavaScript, TypeScript, Bash |
+| Systems | Linux, Windows |
+| Development | Git, GitHub |
+| Web | React, Next.js, Tailwind CSS, HTML, CSS |
+| AI in public code | FastAPI, PyTorch, Hugging Face Transformers |
+| Security interests | Defensive analysis, digital investigation |
 
----
+## Selected projects
 
-## Tech Stack
+Descriptions below were checked against the public repositories on 26 October 2026. Star counts are omitted on purpose.
 
-Based on technologies present in my public repositories.
+| Project | Description | Stack | Repository |
+| --- | --- | --- | --- |
+| Al Zahra Academy | Islamic education platform. The repository README lists a public site at [al-zahra-online-academy.netlify.app](https://al-zahra-online-academy.netlify.app). | TypeScript, Next.js, React, Tailwind CSS, Prisma | [Infinity-X202/al-zahra-online-academy](https://github.com/Infinity-X202/al-zahra-online-academy) |
+| AutoVendita | Italian car marketplace UI demo. Sample listings, browser storage only, and no payments or accounts. The repository marks it as a prototype. | Next.js, React, TypeScript, Tailwind CSS | [Infinity-X202/AutoVendita](https://github.com/Infinity-X202/AutoVendita) |
+| Waliwheel | Front-end car site. Public homepage: [waliwheel.vercel.app](https://waliwheel.vercel.app). | HTML, CSS, JavaScript | [Infinity-X202/waliwheel](https://github.com/Infinity-X202/waliwheel) |
+| MIA-AI v4 backend | Small FastAPI service that loads a causal language model and exposes a chat endpoint. | Python, FastAPI, PyTorch, Transformers | [Infinity-X202/mia-ai-v4-backend](https://github.com/Infinity-X202/mia-ai-v4-backend) |
+| Cyber X Guardian | Educational endpoint-monitoring project for Windows and Linux, with a desktop dashboard. Personal public project, MIT license. | Python, PyQt6 | [Infinity-X202/Cyber-X-Guardian](https://github.com/Infinity-X202/Cyber-X-Guardian) |
 
-### Web Development
+## Learning and research
 
-`HTML` · `CSS` · `JavaScript` · `React` · `Next.js` · `TypeScript` · `Tailwind CSS`
+- Defensive security and ethical hacking as study, inside systems I am allowed to test
+- Digital forensics and how an incident is reconstructed
+- Reading public threat intelligence without treating it as a personal case load
+- Practical machine learning, including small services rather than benchmark claims
+- Clearer writing for the projects above
 
-### AI & Backend
+## Profile card
 
-`Python` · `FastAPI` · `Node.js` · `REST APIs`
+![Infinity X ID](./assets/id-dashboard.svg?v=1)
 
-### Cybersecurity (lab / authorized use)
+The card repeats public profile facts only. The barcode is decorative and does not encode a name, URL, or identifier. No employer, certification, or clearance is shown because none is listed on the public profile.
 
-`Network Security` · `Security Monitoring` · `Authorized Testing Labs` · `Linux` · `Kali Linux (lab)`
+The mark in these graphics is a temporary monogram. A portrait has not been added yet.
 
-### Mobile / Cross-platform
+## Connect
 
-`Dart` · `Flutter` *(see blackcyber)*
+![Connect with Infinity X](./assets/connect.svg?v=1)
 
-### Tools & Platforms
+The picture is not a link. Use the links below.
 
-`Git` · `GitHub` · `GitHub Actions` · `Vercel` · `Docker` · `VS Code` · `Cursor`
+- GitHub: [https://github.com/Infinity-X202](https://github.com/Infinity-X202)
 
----
+Other social profiles are omitted until a public URL is confirmed.
 
-## Featured Projects
+## Responsible security
 
-| Project | Description | Stack |
-| --- | --- | --- |
-| [xpro](https://github.com/Infinity-X202/xpro) | Student-friendly AI home LAN auditor for authorized password/security testing | Python, AI, Security |
-| [mia-ai-v4-backend](https://github.com/Infinity-X202/mia-ai-v4-backend) | FastAPI backend for MIA-AI v4 | Python, FastAPI |
-| [infinityx-2024](https://github.com/Infinity-X202/infinityx-2024) | InfinityX web presence | JavaScript, HTML, CSS |
-| [waliwheel](https://github.com/Infinity-X202/waliwheel) | Web product prototype | JavaScript, CSS, HTML |
-| [AutoVendita](https://github.com/Infinity-X202/AutoVendita) | Car marketplace UI demo/prototype | Next.js, React, TypeScript |
-| [xmonitor](https://github.com/Infinity-X202/xmonitor) | Monitoring utility | Python |
-| [xwirless](https://github.com/Infinity-X202/xwirless) | Educational Wi-Fi audit & inventory tool | Python |
-| [blackcyber](https://github.com/Infinity-X202/blackcyber) | Cross-platform project | Dart, JavaScript |
-
-> Security-related projects are intended for **authorized / educational / lab** use only.
-
----
-
-## Current Focus
-
-```text
-Web products ................ building
-AI-assisted workflows ...... practicing
-Cybersecurity lab tools .... researching
-Open-source presentation ... improving
-```
-
----
-
-## GitHub Activity
-
-![Infinity-X202's GitHub stats](https://github-readme-stats.vercel.app/api?username=Infinity-X202&show_icons=true&theme=transparent&hide_border=true&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9&include_all_commits=true&count_private=false)
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Infinity-X202&layout=compact&theme=transparent&hide_border=true&title_color=58a6ff&text_color=c9d1d9)
-
-<p align="left">
-  <img alt="GitHub Streak" src="https://streak-stats.demolab.com?user=Infinity-X202&theme=transparent&hide_border=true&ring=58a6ff&fire=58a6ff&currStreakLabel=58a6ff" />
-</p>
-
----
-
-## Learning & Research
-
-- Strengthening modern web and backend engineering
-- Using AI tools responsibly to accelerate development
-- Studying cybersecurity with an ethical, lab-first approach
-- Improving documentation and professional repository presentation
-
----
-
-## Contact
-
-- GitHub: [Infinity-X202](https://github.com/Infinity-X202)
-- Website: [infinityx-2024.vercel.app](https://infinityx-2024.vercel.app)
-- Email: `[YOUR_EMAIL — provide to publish]`
-- LinkedIn: `[YOUR_LINKEDIN_URL — provide to publish]`
-
----
-
-<p align="center">
-  <sub>Infinity X Developer · Built with intention · Claims aligned with public repositories</sub>
-</p>
-
+I study security to understand and defend systems. This profile does not publish exploit instructions, access to systems I do not own, or tools meant to disrupt services. Security testing belongs only in environments the tester is allowed to use.
