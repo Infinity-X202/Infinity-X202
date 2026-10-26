@@ -8,6 +8,7 @@ with the owner's images (see docs/ASSET_SOURCES.md).
 from __future__ import annotations
 
 import base64
+import io
 import math
 import re
 import xml.etree.ElementTree as ET
@@ -57,7 +58,7 @@ def font_css() -> str:
 .mid { font-family: Syne, "Segoe UI", sans-serif; font-weight: 600; fill: #F4F7FF; }
 .body { font-family: Syne, "Segoe UI", sans-serif; font-weight: 500; fill: #A7B2C8; }
 .mono { font-family: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace; font-weight: 400; fill: #A7B2C8; }
-.kicker { font-family: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace; font-weight: 500; fill: #247BFF; letter-spacing: 0.16em; }
+.kicker { font-family: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace; font-weight: 500; fill: #C4B5FD; letter-spacing: 0.16em; }
 @media (prefers-reduced-motion: reduce) {
   animate, animateTransform, animateMotion { display: none !important; }
 }
@@ -80,66 +81,50 @@ def png_data(path: Path) -> str:
     return base64.b64encode(path.read_bytes()).decode("ascii")
 
 
-def make_portraits() -> None:
-    ASSETS.mkdir(parents=True, exist_ok=True)
-    # Keep owner-supplied portraits. Replace these files, then rerun the script.
-    if (ASSETS / "id.png").exists() and (ASSETS / "right_pointing.png").exists():
-        return
-    mark = Image.new("RGBA", (1024, 1024), (0, 0, 0, 0))
-    glow = Image.new("RGBA", (1024, 1024), (0, 0, 0, 0))
-    g = ImageDraw.Draw(glow)
-    g.ellipse((180, 180, 844, 844), fill=(36, 123, 255, 70))
-    g.ellipse((300, 260, 780, 800), fill=(255, 53, 79, 54))
-    glow = glow.filter(ImageFilter.GaussianBlur(36))
-    mark = Image.alpha_composite(mark, glow)
-    d = ImageDraw.Draw(mark)
-    d.rounded_rectangle((212, 150, 812, 874), radius=180, outline=(244, 247, 255, 40), width=2)
-    d.arc((250, 392, 560, 702), 20, 340, fill=(36, 123, 255, 255), width=22)
-    d.arc((464, 392, 774, 702), 200, 520, fill=(255, 53, 79, 255), width=22)
-    d.line((250, 392, 560, 702), fill=(36, 123, 255, 0), width=1)
-    # Crossing stroke so the two arcs read as one infinity, not two rings.
-    d.arc((360, 430, 664, 664), 300, 60, fill=(244, 247, 255, 230), width=8)
-    mark.save(ASSETS / "id.png", "PNG")
+POSTER = Path(
+    r"C:\Users\adilf\.cursor\projects\c-Users-adilf-Desktop-github\assets"
+    r"\Infinity_X_Cyberpunk_Hacker_Poster-589c4648-35f3-4105-82d1-c92e4afa019e.jpg"
+)
 
-    point = Image.new("RGBA", (1200, 900), (0, 0, 0, 0))
-    glow = Image.new("RGBA", (1200, 900), (0, 0, 0, 0))
-    g = ImageDraw.Draw(glow)
-    g.ellipse((40, 140, 560, 760), fill=(36, 123, 255, 60))
-    g.ellipse((180, 220, 520, 700), fill=(255, 53, 79, 40))
-    point = Image.alpha_composite(point, glow.filter(ImageFilter.GaussianBlur(28)))
-    d = ImageDraw.Draw(point)
-    d.rounded_rectangle((70, 120, 470, 780), radius=150, outline=(244, 247, 255, 50), width=2)
-    d.arc((120, 330, 340, 570), 20, 340, fill=(36, 123, 255, 255), width=18)
-    d.arc((250, 330, 470, 570), 200, 520, fill=(255, 53, 79, 255), width=18)
-    d.line((500, 450, 690, 450), fill=(167, 178, 200, 140), width=2)
-    chevrons = ((720, 120), (860, 170), (1000, 230))
-    for x, alpha in chevrons:
-        color_a = (36, 123, 255, alpha)
-        color_b = (255, 53, 79, alpha)
-        d.line((x, 330, x + 78, 450), fill=color_a, width=10)
-        d.line((x + 78, 450, x, 570), fill=color_b, width=10)
-    point.save(ASSETS / "right_pointing.png", "PNG")
+
+def jpeg_b64(image: Image.Image, longest: int, quality: int) -> str:
+    frame = image.convert("RGB")
+    frame.thumbnail((longest, longest), Image.Resampling.LANCZOS)
+    buf = io.BytesIO()
+    frame.save(buf, format="JPEG", quality=quality, optimize=True)
+    return base64.b64encode(buf.getvalue()).decode("ascii")
+
+
+def make_portraits() -> tuple[str, str]:
+    """Crop the supplied poster. Returns JPEG data for the hero and the face."""
+    ASSETS.mkdir(parents=True, exist_ok=True)
+    src = Image.open(POSTER).convert("RGB")
+    face = src.crop((328, 48, 712, 520))
+    hero = src.crop((330, 8, 800, 548))
+    face.save(ASSETS / "id.png", "PNG", optimize=True)
+    hero.save(ASSETS / "right_pointing.png", "PNG", optimize=True)
+    return jpeg_b64(hero, 720, 78), jpeg_b64(face, 520, 82)
 
 
 def defs(prefix: str, width: int, height: int) -> str:
     return f"""<defs>
-  <radialGradient id="{prefix}-glow-a" cx="78%" cy="8%" r="48%">
-    <stop offset="0" stop-color="#247BFF" stop-opacity="0.22"/>
-    <stop offset="1" stop-color="#247BFF" stop-opacity="0"/>
+  <radialGradient id="{prefix}-glow-a" cx="82%" cy="18%" r="55%">
+    <stop offset="0" stop-color="#3D7BFF" stop-opacity="0.42"/>
+    <stop offset="1" stop-color="#3D7BFF" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="{prefix}-glow-b" cx="8%" cy="100%" r="46%">
-    <stop offset="0" stop-color="#FF354F" stop-opacity="0.16"/>
-    <stop offset="1" stop-color="#FF354F" stop-opacity="0"/>
+  <radialGradient id="{prefix}-glow-b" cx="12%" cy="100%" r="50%">
+    <stop offset="0" stop-color="#C026D3" stop-opacity="0.34"/>
+    <stop offset="1" stop-color="#C026D3" stop-opacity="0"/>
   </radialGradient>
   <linearGradient id="{prefix}-rim" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#247BFF" stop-opacity="0.9"/>
-    <stop offset="0.48" stop-color="#F4F7FF" stop-opacity="0.22"/>
-    <stop offset="1" stop-color="#FF354F" stop-opacity="0.85"/>
+    <stop offset="0" stop-color="#38BDF8" stop-opacity="0.95"/>
+    <stop offset="0.5" stop-color="#E9D5FF" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#E879F9" stop-opacity="0.95"/>
   </linearGradient>
   <linearGradient id="{prefix}-word" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#6AA4FF"/>
-    <stop offset="0.55" stop-color="#F4F7FF"/>
-    <stop offset="1" stop-color="#FF354F"/>
+    <stop offset="0" stop-color="#7DD3FC"/>
+    <stop offset="0.45" stop-color="#F5F3FF"/>
+    <stop offset="1" stop-color="#E879F9"/>
   </linearGradient>
   <linearGradient id="{prefix}-metal" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#F4F7FF"/>
@@ -160,7 +145,7 @@ def defs(prefix: str, width: int, height: int) -> str:
 
 def chrome(prefix: str, width: int, height: int) -> str:
     return f"""<g clip-path="url(#{prefix}-frame)">
-  <rect width="{width}" height="{height}" fill="#070B16"/>
+  <rect width="{width}" height="{height}" fill="#05030C"/>
   <rect width="{width}" height="{height}" fill="url(#{prefix}-glow-a)"/>
   <rect width="{width}" height="{height}" fill="url(#{prefix}-glow-b)"/>
   <rect width="{width}" height="{height}" fill="url(#{prefix}-grid)"/>
@@ -206,7 +191,7 @@ def ellipse_path(cx, cy, rx, ry, phi, n=120) -> str:
     return "M " + " L ".join(f"{x:.2f} {y:.2f}" for x, y in pts) + " Z"
 
 
-def build_hero(icons_unused, id_b64: str) -> str:
+def build_hero(icons_unused, hero_b64: str) -> str:
     roles = [
         "Cybersecurity &amp; Ethical Hacking",
         "Artificial Intelligence &amp; Machine Learning",
@@ -224,46 +209,38 @@ def build_hero(icons_unused, id_b64: str) -> str:
     role_nodes = []
     for text, (values, times, base) in zip(roles, role_anim):
         role_nodes.append(
-            f"""<text x="56" y="348" class="mid" font-size="22" opacity="{base}">{text}<animate attributeName="opacity" begin="0s" dur="12s" repeatCount="indefinite" calcMode="discrete" values="{values}" keyTimes="{times}"/></text>"""
+            f"""<text x="48" y="332" class="mid" font-size="20" opacity="{base}">{text}<animate attributeName="opacity" begin="0s" dur="12s" repeatCount="indefinite" calcMode="discrete" values="{values}" keyTimes="{times}"/></text>"""
         )
     body = f"""
+<clipPath id="hx-portrait">
+  <rect x="500" y="28" width="432" height="484" rx="26"/>
+</clipPath>
+<image href="data:image/jpeg;base64,{hero_b64}" x="470" y="28" width="492" height="484" preserveAspectRatio="xMidYMid slice" clip-path="url(#hx-portrait)"/>
+<rect x="500.5" y="28.5" width="431" height="483" rx="26" fill="none" stroke="url(#hx-rim)" stroke-width="1.6"/>
 <g>
-  <text x="56" y="78" class="kicker" font-size="13">INFINITY X  ·  PROFILE</text>
-  <text x="56" y="128" class="body" font-size="22">Hello.</text>
-  <rect x="148" y="110" width="10" height="18" rx="1" fill="#247BFF">
-    <animate attributeName="opacity" begin="0s" dur="1.2s" repeatCount="indefinite" values="1;0;1" keyTimes="0;0.5;1" calcMode="discrete"/>
-  </rect>
+  <text x="48" y="72" class="kicker" font-size="13">BLACK HAT  ·  INFINITY X</text>
   <clipPath id="hx-nameclip">
-    <rect x="56" y="146" width="560" height="150">
-      <animate attributeName="width" begin="0s" dur="1.05s" fill="freeze" values="0;560" keyTimes="0;1" calcMode="spline" keySplines="0.16 0.84 0.2 1"/>
+    <rect x="48" y="96" width="460" height="160">
+      <animate attributeName="width" begin="0s" dur="1.05s" fill="freeze" values="0;460" keyTimes="0;1" calcMode="spline" keySplines="0.16 0.84 0.2 1"/>
     </rect>
   </clipPath>
   <g clip-path="url(#hx-nameclip)">
-    <text x="56" y="214" class="display" font-size="68">INFINITY</text>
-    <text x="56" y="286" class="display" font-size="68" fill="url(#hx-word)">X</text>
+    <text x="48" y="168" class="display" font-size="62">INFINITY</text>
+    <text x="48" y="236" class="display" font-size="62" fill="url(#hx-word)">X</text>
   </g>
-  <text x="56" y="314" class="kicker" font-size="12">AREAS OF INTEREST</text>
+  <text x="48" y="278" class="kicker" font-size="12">FOCUS</text>
   {''.join(role_nodes)}
-  <text x="56" y="408" class="body" font-size="18">Studying cybersecurity, artificial intelligence,</text>
-  <text x="56" y="434" class="body" font-size="18">and secure software — carefully, and in public.</text>
-  <text x="56" y="486" class="mono" font-size="13">github.com/Infinity-X202</text>
+  <text x="48" y="392" class="body" font-size="17">A black-hat eye for how systems break.</text>
+  <text x="48" y="418" class="body" font-size="17">A builder's hand for what holds.</text>
+  <text x="48" y="478" class="mono" font-size="13" fill="#E9D5FF">github.com/Infinity-X202</text>
 </g>
-<rect x="636" y="78" width="268" height="400" rx="26" fill="#0C1322"/>
-<clipPath id="hx-portrait">
-  <rect x="636" y="78" width="268" height="400" rx="26"/>
-</clipPath>
-<image href="data:image/png;base64,{id_b64}" x="660" y="118" width="220" height="220" preserveAspectRatio="xMidYMid meet" clip-path="url(#hx-portrait)"/>
-<rect x="636.5" y="78.5" width="267" height="399" rx="26" fill="none" stroke="url(#hx-rim)" stroke-width="1.25"/>
-<text x="770" y="378" text-anchor="middle" class="kicker" font-size="12">BRAND MARK</text>
-<text x="770" y="408" text-anchor="middle" class="mid" font-size="20">Infinity X</text>
-<text x="770" y="438" text-anchor="middle" class="mono" font-size="12">Portrait file pending</text>
 """
     return svg_doc(
         "hx",
         W,
         540,
         "Infinity X hero",
-        "Greeting for Infinity X with the name, four rotating areas of interest, a short mission line, and a monogram in place of a portrait.",
+        "Infinity X in a black-hat neon style, with the supplied hooded portrait, the name, and four rotating areas of focus.",
         body,
     )
 
@@ -321,7 +298,7 @@ def build_about() -> str:
   <text x="528" y="278" class="body" font-size="16">{esc(a)}</text>
   <text x="528" y="304" class="body" font-size="16">{esc(b)}</text>
   <text x="528" y="330" class="body" font-size="16">{esc(c)}</text>
-  <text x="528" y="390" class="mono" font-size="12">INTEREST  ·  NOT A JOB TITLE</text>
+  <text x="528" y="390" class="mono" font-size="12">BLACK HAT  ·  FIELD OF STUDY</text>
 </g>"""
         )
     bars = [
@@ -485,10 +462,10 @@ def build_id(id_b64: str) -> str:
   <circle cx="404" cy="214" r="5" fill="none" stroke="#8E9BB3" stroke-width="1.5"/>
   <circle cx="556" cy="214" r="5" fill="none" stroke="#8E9BB3" stroke-width="1.5"/>
   <clipPath id="ixcard-face">
-    <circle cx="480" cy="292" r="46"/>
+    <circle cx="480" cy="292" r="58"/>
   </clipPath>
-  <circle cx="480" cy="292" r="48" fill="#0B1220" stroke="url(#ixcard-word)" stroke-width="1.5"/>
-  <image href="data:image/png;base64,{id_b64}" x="434" y="246" width="92" height="92" clip-path="url(#ixcard-face)" preserveAspectRatio="xMidYMid slice"/>
+  <circle cx="480" cy="292" r="60" fill="#0B0614" stroke="url(#ixcard-word)" stroke-width="2"/>
+  <image href="data:image/jpeg;base64,{id_b64}" x="420" y="232" width="120" height="120" clip-path="url(#ixcard-face)" preserveAspectRatio="xMidYMid slice"/>
   <text x="480" y="368" text-anchor="middle" class="kicker" font-size="11">INFINITY X</text>
   <text x="480" y="396" text-anchor="middle" class="mid" font-size="20">Adil Fayyaz</text>
   <text x="480" y="422" text-anchor="middle" class="body" font-size="13">Security · AI · Software</text>
@@ -523,11 +500,15 @@ def build_connect(point_b64: str) -> str:
     body = f"""
 <text x="48" y="70" class="kicker" font-size="13">CONNECT</text>
 <text x="48" y="108" class="display" font-size="32">Find Infinity X</text>
-<image href="data:image/png;base64,{point_b64}" x="36" y="140" width="430" height="322" preserveAspectRatio="xMidYMid meet"/>
+<clipPath id="cn-portrait">
+  <rect x="36" y="128" width="360" height="320" rx="24"/>
+</clipPath>
+<image href="data:image/jpeg;base64,{point_b64}" x="16" y="128" width="400" height="320" preserveAspectRatio="xMidYMid slice" clip-path="url(#cn-portrait)"/>
+<rect x="36.5" y="128.5" width="359" height="319" rx="24" fill="none" stroke="url(#cn-rim)" stroke-width="1.4"/>
 <g>
   <animateTransform attributeName="transform" type="translate" additive="sum" begin="0s" dur="2.2s" repeatCount="indefinite" values="0 0;8 0;0 0" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
-  <path d="M470 300 H520" stroke="#247BFF" stroke-width="1.5"/>
-  <path d="M508 290 L524 300 L508 310" fill="none" stroke="#FF354F" stroke-width="1.5"/>
+  <path d="M412 288 H500" stroke="#7DD3FC" stroke-width="1.6"/>
+  <path d="M488 276 L508 288 L488 300" fill="none" stroke="#E879F9" stroke-width="1.6"/>
 </g>
 <rect x="548" y="168" width="364" height="196" rx="20" fill="#0C1322" stroke="url(#cn-rim)" stroke-width="1.2"/>
 <rect x="576" y="196" width="44" height="44" rx="12" fill="#10182A" stroke="#243049"/>
@@ -663,12 +644,12 @@ def validate(files: list[Path]) -> None:
 
 
 def main() -> None:
-    make_portraits()
+    hero_b64, face_b64 = make_portraits()
     icons = load_icons()
-    id_b64 = png_data(ASSETS / "id.png")
-    point_b64 = png_data(ASSETS / "right_pointing.png")
+    id_b64 = face_b64
+    point_b64 = hero_b64
     docs = {
-        "hero.svg": build_hero(icons, id_b64),
+        "hero.svg": build_hero(icons, hero_b64),
         "about-life.svg": build_about(),
         "stack.svg": build_stack(icons),
         "id-dashboard.svg": build_id(id_b64),
@@ -683,8 +664,7 @@ def main() -> None:
     write_preview(list(docs))
     for name in ("id.png", "right_pointing.png"):
         im = Image.open(ASSETS / name)
-        corners = [im.getpixel((0, 0)), im.getpixel((im.width - 1, im.height - 1))]
-        print(name, im.mode, im.size, "corner alpha", [c[-1] for c in corners])
+        print(name, im.mode, im.size)
 
 
 if __name__ == "__main__":

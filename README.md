@@ -1,14 +1,14 @@
 # Infinity X
 
-![Infinity X Hero](./assets/hero.svg?v=1)
+![Infinity X Hero](./assets/hero.svg?v=2)
 
-I am Adil Fayyaz, working in public as **Infinity X**. I build software and study cybersecurity, artificial intelligence, digital forensics, and threat intelligence. Those are areas of focus, not job titles or certifications.
+I am Adil Fayyaz. In public I am **Infinity X** — a black-hat eye on cybersecurity, artificial intelligence, digital forensics, and threat intelligence, and a builder when it is time to ship. These are areas of focus, not job titles or certifications.
 
 GitHub: [github.com/Infinity-X202](https://github.com/Infinity-X202)
 
 ## About me
 
-![About Infinity X](./assets/about-life.svg?v=1)
+![About Infinity X](./assets/about-life.svg?v=2)
 
 I care about careful software, defensive security, and understanding how incidents are investigated. The panels above are interests. They are not a claim of professional experience, clearance, or client work.
 
@@ -21,7 +21,7 @@ Current focus:
 
 ## Technology
 
-![Technology Stack](./assets/stack.svg?v=1)
+![Technology Stack](./assets/stack.svg?v=2)
 
 The icons name tools that show up in public repositories, or systems I use. An icon is a label, not a certification.
 
@@ -56,15 +56,15 @@ Descriptions below were checked against the public repositories on 26 October 20
 
 ## Profile card
 
-![Infinity X ID](./assets/id-dashboard.svg?v=1)
+![Infinity X ID](./assets/id-dashboard.svg?v=2)
 
 The card repeats public profile facts only. The barcode is decorative and does not encode a name, URL, or identifier. No employer, certification, or clearance is shown because none is listed on the public profile.
 
-The mark in these graphics is a temporary monogram. A portrait has not been added yet.
+The portrait is the Infinity X hooded mark supplied for this profile. It is a stylized character, not a photograph.
 
 ## Connect
 
-![Connect with Infinity X](./assets/connect.svg?v=1)
+![Connect with Infinity X](./assets/connect.svg?v=2)
 
 The picture is not a link. Use the links below.
 

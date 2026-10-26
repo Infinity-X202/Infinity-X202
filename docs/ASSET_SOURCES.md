@@ -19,21 +19,9 @@ Python, JavaScript, TypeScript, GNU Bash (`gnubash`), Linux, Git, GitHub, React,
 
 The Windows mark was not on that CDN. It is the four-square path from Simple Icons 11.14.0 (`simple-icons@11.14.0/icons/windows.svg`). It names the operating system. It is not a Microsoft partnership.
 
-## Portraits
+## Portrait
 
-`assets/id.png` and `assets/right_pointing.png` were **not** supplied with the playbook. Both files in this package are generated geometric monograms:
-
-- Transparent PNG (alpha 0 at the corners)
-- `id.png` is 1024×1024
-- `right_pointing.png` is 1200×900, with chevrons aimed to the viewer’s right
-
-They are not a portrait of the owner and are not a traced face. To use a real portrait, replace both PNGs with the playbook exports (real alpha, not a painted checkerboard), then run:
-
-```bash
-python scripts/build_profile.py
-```
-
-The script embeds whatever PNGs are already in `assets/` and does not overwrite them.
+The hooded figure is cropped from the Infinity X poster supplied on 26 October 2026. It is a stylized character illustration, not a photograph of the owner. `assets/id.png` is the face crop. `assets/right_pointing.png` is the wider bust crop used beside the GitHub card. The SVGs embed compressed JPEG copies of those crops so the files stay smaller.
 
 ## Profile facts
 

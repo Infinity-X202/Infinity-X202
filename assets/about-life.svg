@@ -37,30 +37,30 @@
 .mid { font-family: Syne, "Segoe UI", sans-serif; font-weight: 600; fill: #F4F7FF; }
 .body { font-family: Syne, "Segoe UI", sans-serif; font-weight: 500; fill: #A7B2C8; }
 .mono { font-family: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace; font-weight: 400; fill: #A7B2C8; }
-.kicker { font-family: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace; font-weight: 500; fill: #247BFF; letter-spacing: 0.16em; }
+.kicker { font-family: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace; font-weight: 500; fill: #C4B5FD; letter-spacing: 0.16em; }
 @media (prefers-reduced-motion: reduce) {
   animate, animateTransform, animateMotion { display: none !important; }
 }
 
 ]]></style>
 <defs>
-  <radialGradient id="al-glow-a" cx="78%" cy="8%" r="48%">
-    <stop offset="0" stop-color="#247BFF" stop-opacity="0.22"/>
-    <stop offset="1" stop-color="#247BFF" stop-opacity="0"/>
+  <radialGradient id="al-glow-a" cx="82%" cy="18%" r="55%">
+    <stop offset="0" stop-color="#3D7BFF" stop-opacity="0.42"/>
+    <stop offset="1" stop-color="#3D7BFF" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="al-glow-b" cx="8%" cy="100%" r="46%">
-    <stop offset="0" stop-color="#FF354F" stop-opacity="0.16"/>
-    <stop offset="1" stop-color="#FF354F" stop-opacity="0"/>
+  <radialGradient id="al-glow-b" cx="12%" cy="100%" r="50%">
+    <stop offset="0" stop-color="#C026D3" stop-opacity="0.34"/>
+    <stop offset="1" stop-color="#C026D3" stop-opacity="0"/>
   </radialGradient>
   <linearGradient id="al-rim" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#247BFF" stop-opacity="0.9"/>
-    <stop offset="0.48" stop-color="#F4F7FF" stop-opacity="0.22"/>
-    <stop offset="1" stop-color="#FF354F" stop-opacity="0.85"/>
+    <stop offset="0" stop-color="#38BDF8" stop-opacity="0.95"/>
+    <stop offset="0.5" stop-color="#E9D5FF" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#E879F9" stop-opacity="0.95"/>
   </linearGradient>
   <linearGradient id="al-word" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#6AA4FF"/>
-    <stop offset="0.55" stop-color="#F4F7FF"/>
-    <stop offset="1" stop-color="#FF354F"/>
+    <stop offset="0" stop-color="#7DD3FC"/>
+    <stop offset="0.45" stop-color="#F5F3FF"/>
+    <stop offset="1" stop-color="#E879F9"/>
   </linearGradient>
   <linearGradient id="al-metal" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#F4F7FF"/>
@@ -78,7 +78,7 @@
   </clipPath>
 </defs>
 <g clip-path="url(#al-frame)">
-  <rect width="960" height="500" fill="#070B16"/>
+  <rect width="960" height="500" fill="#05030C"/>
   <rect width="960" height="500" fill="url(#al-glow-a)"/>
   <rect width="960" height="500" fill="url(#al-glow-b)"/>
   <rect width="960" height="500" fill="url(#al-grid)"/>
@@ -115,21 +115,21 @@
   <text x="528" y="278" class="body" font-size="16">Interested in how attacks are understood</text>
   <text x="528" y="304" class="body" font-size="16">so defenses can be designed. Not a claim</text>
   <text x="528" y="330" class="body" font-size="16">of professional testing engagements.</text>
-  <text x="528" y="390" class="mono" font-size="12">INTEREST  ·  NOT A JOB TITLE</text>
+  <text x="528" y="390" class="mono" font-size="12">BLACK HAT  ·  FIELD OF STUDY</text>
 </g><g opacity="0">
   <animate attributeName="opacity" begin="0s" dur="12s" repeatCount="indefinite" calcMode="discrete" values="0;0;1;1;0;0" keyTimes="0;0.30;0.333;0.63;0.666;1"/>
   <text x="528" y="230" class="mid" font-size="26">AI and machine learning</text>
   <text x="528" y="278" class="body" font-size="16">Experimenting with models and automation,</text>
   <text x="528" y="304" class="body" font-size="16">including a small public language-model</text>
   <text x="528" y="330" class="body" font-size="16">service. Learning, not a lab credential.</text>
-  <text x="528" y="390" class="mono" font-size="12">INTEREST  ·  NOT A JOB TITLE</text>
+  <text x="528" y="390" class="mono" font-size="12">BLACK HAT  ·  FIELD OF STUDY</text>
 </g><g opacity="0">
   <animate attributeName="opacity" begin="0s" dur="12s" repeatCount="indefinite" calcMode="discrete" values="0;0;1;1;0" keyTimes="0;0.63;0.666;0.999;1"/>
   <text x="528" y="230" class="mid" font-size="26">Forensics and intelligence</text>
   <text x="528" y="278" class="body" font-size="16">Interested in how incidents are reconstructed</text>
   <text x="528" y="304" class="body" font-size="16">and how public threat information is read</text>
   <text x="528" y="330" class="body" font-size="16">without pretending to hold a case load.</text>
-  <text x="528" y="390" class="mono" font-size="12">INTEREST  ·  NOT A JOB TITLE</text>
+  <text x="528" y="390" class="mono" font-size="12">BLACK HAT  ·  FIELD OF STUDY</text>
 </g>
 
 </svg>
